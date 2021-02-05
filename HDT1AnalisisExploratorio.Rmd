@@ -1,0 +1,17 @@
+---
+title: "Análisis Exploratorio, HDT 1"
+author: "Ayleen Rubio 19003, Andrés Say 19705. Andreé Toledo 18439"
+date: "4/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+```{r cars}
+summary(cars)
+```
