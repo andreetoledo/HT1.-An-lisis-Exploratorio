@@ -7,11 +7,13 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir="C:/Users/Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT1")
 ```
 
+## Informe de análisis exploratorio 
+En este informe usted podrá leer los hallazgos de EDA, a continuación se muestra el resumen de los datos:
 
-
-
-```{r cars}
-summary(cars)
+```{r movies, echo=FALSE}
+sum_movies <- read.csv("tmdb-movies.csv")
+summary(sum_movies)
 ```
