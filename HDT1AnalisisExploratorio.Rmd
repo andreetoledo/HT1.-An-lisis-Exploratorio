@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir="C:/Users/Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT1")
 ```
 
-## Informe de análisis exploratorio 
+# Informe de análisis exploratorio 
 En este informe usted podrá leer los hallazgos de EDA, a continuación se muestra el resumen de los datos:
 
 ```{r movies, echo=FALSE}
@@ -23,4 +23,26 @@ En el siguiente cuadro se muestra el tipo de dato de cada variable:
 ```{r data, echo=FALSE}
 str(sum_movies)
 ```
+## Prueba de normalidad para datos cuantitativos  
+
+### Prueba de normalidad para popularity:
+```{r normal, echo=FALSE}
+#install.packages("ggplot2",repos = "http://cran.us.r-project.org")
+library (ggplot2)
+ggplot(data = sum_movies, aes(x = popularity)) + 
+  geom_histogram(aes(y=..density.., fill = ..count..))+
+  scale_fill_gradient(low = "#DCDCDC", high = "#7C7C7C")+
+  stat_function(fun = dnorm, colour = "firebrick",
+                args = list(mean = mean(sum_movies$popularity),
+                            sd = sd(sum_movies$popularity)))+
+  ggtitle("Histograma con curva normal teórica de la popularidad") + 
+  theme_bw()
+boxplot(sum_movies$popularity, main = "Caja y Bigotes de Popularidad", xlab = "Popularidad")
+qqnorm(sum_movies$popularity, col="blue")
+qqline(sum_movies$popularity, col="red")
+
+```
+
+
+
 
