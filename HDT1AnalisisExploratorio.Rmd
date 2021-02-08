@@ -234,16 +234,6 @@ genres <- data.frame(table(do.call(c, lapply(sum_movies$genres, function(x) unli
 table(genres)
 ```
 
-### Tabla de frecuencias para Companias productoras
-```{r cast2, echo=FALSE}
-sum_movies <- read.csv(
-  "tmdb-movies.csv")
-
-
-production_companies <- data.frame(table(do.call(c, lapply(sum_movies$production_companies, function(x) unlist(strsplit(x, "\\|"))))))
-table(production_companies)
-```
-
 
 ## Anio y fecha de lanzamientos
 ```{r dates, echo=FALSE}
@@ -256,7 +246,7 @@ release_date <- data.frame(table(sum_movies$release_date))
 
 library (ggplot2)
 
-ggplot(release_year, aes(release_year)) +
+ggplot(sum_movies, aes(release_year)) +
     labs(title='Anios de lanzamiento')+
     geom_histogram(fill="blue") 
 
