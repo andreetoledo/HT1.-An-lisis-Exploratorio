@@ -7,7 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir="C:/Users/Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT1")
+knitr::opts_knit$set(root.dir="C:/Users/Andree/Documents/GitHub/HT1.Analisis-Exploratorio")
 ```
 
 # Informe de análisis exploratorio 
@@ -221,8 +221,20 @@ En conclusión, la única variable que sigue una distribución normal es el prom
 ### Tabla de frecuencias para los géneros
 ```{r cast, echo=FALSE}
 #install.packages("dplyr",repos = "http://cran.us.r-project.org")
-library(dplyr)
-table(separate(sum_movies$genres, sep = "|"))
+#library(dplyr)
 
+#sum_movies <- read.csv("tmdb-movies.csv")
+#table(separate(sum_movies$genres, sep = "|"))
+
+sum_movies <- read.csv(
+  "tmdb-movies.csv")
+#table(sum_movies$genre)
+
+genres <- data.frame(table(do.call(c, lapply(sum_movies$genres, function(x) unlist(strsplit(x, "\\|"))))))
+table(genres)
 ```
+
+
+
+
 
