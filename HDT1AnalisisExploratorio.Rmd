@@ -7,7 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir="C:/Users/Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT1")
+knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HT1.Analisis-Exploratorio")
 ```
 
 # Informe de análisis exploratorio 
