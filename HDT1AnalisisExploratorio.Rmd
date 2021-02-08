@@ -25,8 +25,10 @@ str(sum_movies)
 ```
 ## Prueba de normalidad para datos cuantitativos  
 
+Se han escogido las variables cuantitativas que podrían seguir una distribución normal, como lo es el presupuesto o los ingresos, ya que variables como el Id de la película no son datos relevantes para hacer un análisis estadístico.
+
 ### Prueba de normalidad para popularity:
-```{r normal, echo=FALSE}
+```{r normalHist, echo=FALSE}
 #install.packages("ggplot2",repos = "http://cran.us.r-project.org")
 library (ggplot2)
 ggplot(data = sum_movies, aes(x = popularity)) + 
@@ -37,12 +39,190 @@ ggplot(data = sum_movies, aes(x = popularity)) +
                             sd = sd(sum_movies$popularity)))+
   ggtitle("Histograma con curva normal teórica de la popularidad") + 
   theme_bw()
+```  
+
+Como puede observarse, no se sigue una forma de campana y no se cuenta con simetría, por lo que no cumple con la normalidad.
+
+```{r normalBox, echo=FALSE}
 boxplot(sum_movies$popularity, main = "Caja y Bigotes de Popularidad", xlab = "Popularidad")
-qqnorm(sum_movies$popularity, col="blue")
-qqline(sum_movies$popularity, col="red")
 
 ```
 
+En este gráfico se observan muchos puntos atípicos y no se parece que siga una distribución normal.
+
+```{r normalQQ, echo=FALSE}
+qqnorm(sum_movies$popularity, col="blue")
+qqline(sum_movies$popularity, col="red")
+```
+
+En este gráfico se puede observar que tampoco se cumple la normalidad ya que los valores no se encuentran alineados.
+
+### Prueba de normalidad para el presupuesto:
+```{r normalHist2, echo=FALSE}
+library (ggplot2)
+ggplot(data = sum_movies, aes(x = budget)) + 
+  geom_histogram(aes(y=..density.., fill = ..count..))+
+  scale_fill_gradient(low = "#DCDCDC", high = "#7C7C7C")+
+  stat_function(fun = dnorm, colour = "firebrick",
+                args = list(mean = mean(sum_movies$budget),
+                            sd = sd(sum_movies$budget)))+
+  ggtitle("Histograma con curva normal teórica del presupuesto") + 
+  theme_bw()
+
+```
+
+Como puede observarse, no se sigue una forma de campana y no se cuenta con simetría, por lo que no cumple con la normalidad.
+
+```{r normalBox2, echo=FALSE}
+boxplot(sum_movies$budget, main = "Caja y Bigotes de Presupuesto")
+
+```
+
+En este gráfico se observan muchos puntos atípicos y no se parece que siga una distribución normal.
+
+```{r normalQQ2, echo=FALSE}
+qqnorm(sum_movies$budget, col="blue")
+qqline(sum_movies$budget, col="red")
+```
+
+En este gráfico se puede observar que tampoco se cumple la normalidad ya que los valores no se encuentran alineados.
+
+### Prueba de normalidad para los ingresos:
+
+```{r normalHist3, echo=FALSE}
+library (ggplot2)
+ggplot(data = sum_movies, aes(x = revenue)) + 
+  geom_histogram(aes(y=..density.., fill = ..count..))+
+  scale_fill_gradient(low = "#DCDCDC", high = "#7C7C7C")+
+  stat_function(fun = dnorm, colour = "firebrick",
+                args = list(mean = mean(sum_movies$revenue),
+                            sd = sd(sum_movies$revenue)))+
+  ggtitle("Histograma con curva normal teórica de los ingresos") + 
+  theme_bw()
+
+```
+
+Como puede observarse, no se sigue una forma de campana y no se cuenta con simetría, por lo que no cumple con la normalidad.
+
+```{r normalBox3, echo=FALSE}
+boxplot(sum_movies$revenue, main = "Caja y Bigotes de los ingresos")
+
+```
+
+En este gráfico se observan muchos puntos atípicos y no se parece que siga una distribución normal.
+
+```{r normalQQ3, echo=FALSE}
+qqnorm(sum_movies$revenue, col="blue")
+qqline(sum_movies$revenue, col="red")
+```
+
+En este gráfico se puede observar que tampoco se cumple la normalidad ya que los valores no se encuentran alineados.
+
+### Prueba de normalidad para la duración de la película:
+
+```{r normalHist4, echo=FALSE}
+library (ggplot2)
+ggplot(data = sum_movies, aes(x = runtime)) + 
+  geom_histogram(aes(y=..density.., fill = ..count..))+
+  scale_fill_gradient(low = "#DCDCDC", high = "#7C7C7C")+
+  stat_function(fun = dnorm, colour = "firebrick",
+                args = list(mean = mean(sum_movies$runtime),
+                            sd = sd(sum_movies$runtime)))+
+  ggtitle("Histograma con curva normal teórica de la duracion de la pelicula") + 
+  theme_bw()
+
+```
+
+Como puede observarse, sí se sigue una forma de campana y sí se cuenta con simetría, por lo que en este caso sí se cumple con la normalidad
+
+```{r normalBox4, echo=FALSE}
+boxplot(sum_movies$runtime, main = "Caja y Bigotes de la duración")
+
+```
+
+En este gráfico se observan muchos puntos atípicos y no se parece que siga una distribución normal.
+
+```{r normalQQ4, echo=FALSE}
+qqnorm(sum_movies$runtime, col="blue")
+qqline(sum_movies$runtime, col="red")
+```
+
+En este gráfico se puede observar que tampoco se cumple la normalidad ya que los valores no se encuentran alineados.
+
+Debido a que dos de las tres pruebas no cumplen con normalidad, no puede afirmarse que la duración de las películas siga una distribución normal.
+
+### Prueba de normalidad para el número de votos:
+
+```{r normalHist5, echo=FALSE}
+library (ggplot2)
+ggplot(data = sum_movies, aes(x = vote_count)) + 
+  geom_histogram(aes(y=..density.., fill = ..count..))+
+  scale_fill_gradient(low = "#DCDCDC", high = "#7C7C7C")+
+  stat_function(fun = dnorm, colour = "firebrick",
+                args = list(mean = mean(sum_movies$vote_count),
+                            sd = sd(sum_movies$vote_count)))+
+  ggtitle("Histograma con curva normal teórica del número de votos") + 
+  theme_bw()
+
+```
+
+Como puede observarse, no se sigue una forma de campana y no se cuenta con simetría, por lo que no cumple con la normalidad.
+
+```{r normalBox5, echo=FALSE}
+boxplot(sum_movies$vote_count, main = "Caja y Bigotes del numero de votos")
+
+```
+
+En este gráfico se observan muchos puntos atípicos y no se parece que siga una distribución normal.
+
+```{r normalQQ5, echo=FALSE}
+qqnorm(sum_movies$vote_count, col="blue")
+qqline(sum_movies$vote_count, col="red")
+```
+
+En este gráfico se puede observar que tampoco se cumple la normalidad ya que los valores no se encuentran alineados.
+
+### Prueba de normalidad para el promedio del número de votos:
+
+```{r normalHist6, echo=FALSE}
+library (ggplot2)
+ggplot(data = sum_movies, aes(x = vote_average)) + 
+  geom_histogram(aes(y=..density.., fill = ..count..))+
+  scale_fill_gradient(low = "#DCDCDC", high = "#7C7C7C")+
+  stat_function(fun = dnorm, colour = "firebrick",
+                args = list(mean = mean(sum_movies$vote_average),
+                            sd = sd(sum_movies$vote_average)))+
+  ggtitle("Histograma con curva normal teórica del promedio de número de votos") + 
+  theme_bw()
+
+```
+
+Como puede observarse, sí se sigue una forma de campana y no sí cuenta con simetría, por lo que sí cumple con la normalidad.
+
+```{r normalBox6, echo=FALSE}
+boxplot(sum_movies$vote_average, main = "Caja y Bigotes del promedio de numero de votos")
+
+```
+
+En este gráfico se observa que se sigue una distribución normal.
+
+```{r normalQQ6, echo=FALSE}
+qqnorm(sum_movies$vote_average, col="blue")
+qqline(sum_movies$vote_average, col="red")
+```
+
+En este gráfico se puede observar que también se cumple la normalidad ya que los valores sí se encuentran alineados.
+
+En conclusión, la única variable que sigue una distribución normal es el promedio de votos en la plataforma para las películas, esto puede ser debido a que algunas variables, como el presupuesto, ganancias y la duración, se encuentran en diferentes escalas.
 
 
+## Tabla de frecuencias para variables cualitativas
+
+### Tabla de frecuencias para los géneros
+```{r cast, echo=FALSE}
+#install.packages("dplyr",repos = "http://cran.us.r-project.org")
+library(dplyr)
+table(separate(sum_movies$genres, sep = "|"))
+
+```
 
