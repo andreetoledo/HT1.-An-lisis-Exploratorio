@@ -7,7 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HT1.Analisis-Exploratorio")
+
 ```
 
 # Informe de análisis exploratorio 
@@ -220,10 +222,69 @@ En conclusión, la única variable que sigue una distribución normal es el prom
 
 ### Tabla de frecuencias para los géneros
 ```{r cast, echo=FALSE}
-#install.packages("dplyr",repos = "http://cran.us.r-project.org")
-#library(dplyr)
+
+
+#sum_movies <- read.csv("tmdb-movies.csv")
 #table(separate(sum_movies$genres, sep = "|"))
 
+sum_movies <- read.csv(
+  "tmdb-movies.csv")
+#table(sum_movies$genre)
+
+genres <- data.frame(table(do.call(c, lapply(sum_movies$genres, function(x) unlist(strsplit(x, "\\|"))))))
+table(genres)
+```
+
+### Tabla de frecuencias para Companias productoras
+```{r cast2, echo=FALSE}
+sum_movies <- read.csv(
+  "tmdb-movies.csv")
+
+
+production_companies <- data.frame(table(do.call(c, lapply(sum_movies$production_companies, function(x) unlist(strsplit(x, "\\|"))))))
+table(production_companies)
+```
+
+## Anio y fecha de lanzamientos
+```{r dates, echo=FALSE}
+sum_movies <- read.csv(
+  "tmdb-movies.csv")
+
+
+release_year <- data.frame(table(sum_movies$release_year))
+release_date <- data.frame(table(sum_movies$release_date))
+
+library (ggplot2)
+
+ggplot(sum_movies, aes(release_year)) +
+    labs(title='Anios de lanzamiento')+
+    geom_histogram(fill="blue") 
+ 
+```
+
+```{r}
+##¿Cuales son las 10 peliculas que contaron con más presupuesto?
+library(dplyr)
+library(magrittr)
+top_n(sum_movies,9,sum_movies$budget)
+
+```{r}
+##¿Cuales son las 10 peliculas que más ingresos tuvieron?
+top_n(sum_movies,10,sum_movies$revenue)
+
+```{r}
+##¿Cuál es la pelicula con más votos?
+sum_movies[which.max(sum_movies$vote_count),]
+
+```{r}
+##¿Cuál es la pelicula con más votos?
+sum_movies[which.min(sum_movies$vote_count),]
+
+```{r}
+##¿Cuál es el género principal de las 20 películas más populares
+top20 <- top_n(sum_movies,20,sum_movies$popularity)
+resp6 <- top_n(top20, 1, top20$genres)
+resp6
 
 
 
