@@ -245,5 +245,21 @@ table(production_companies)
 ```
 
 
+## Anio y fecha de lanzamientos
+```{r dates, echo=FALSE}
+sum_movies <- read.csv(
+  "tmdb-movies.csv")
+
+
+release_year <- data.frame(table(sum_movies$release_year))
+release_date <- data.frame(table(sum_movies$release_date))
+
+library (ggplot2)
+
+ggplot(release_year, aes(release_year)) +
+    labs(title='Anios de lanzamiento')+
+    geom_histogram(fill="blue") 
+
+```
 
 
