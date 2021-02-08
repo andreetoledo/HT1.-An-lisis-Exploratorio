@@ -221,8 +221,9 @@ En conclusión, la única variable que sigue una distribución normal es el prom
 ### Tabla de frecuencias para los géneros
 ```{r cast, echo=FALSE}
 #install.packages("dplyr",repos = "http://cran.us.r-project.org")
-library(dplyr)
-table(separate(sum_movies$genres, sep = "|"))
+#library(dplyr)
+#table(separate(sum_movies$genres, sep = "|"))
 
-```
+
+
 
