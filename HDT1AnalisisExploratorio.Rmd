@@ -8,8 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 #"C:\Users\andre\OneDrive\Documentos\HT1.Analisis-Exploratorio"
+#Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT1
 
-knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HT1.Analisis-Exploratorio")
+knitr::opts_knit$set(root.dir="C:/Users/Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT1")
 
 ```
 
@@ -334,20 +335,63 @@ Según el gráfico observado, el género que predomina en el conjunto de datos e
 
 ## Películas de cierto género principal con mayores ganancias
 
-```{r peliculaMayoresGanancias, echo=FALSE}
+Película                      :                     Género   
+   
+1  Jurassic World                                     :Adventure|Fantasy|Action
 
-```
+2  Star Wars: The Force Awakens                       :Fantasy|Action|Adventure
+
+3  Furious 7                                          :Action|Adventure
+
+4  Avengers: Age of Ultron                            :Adventure|Fantasy|Action
+
+5  Avatar                                             :Adventure|Fantasy|Action|Science Fiction
+
+6  Harry Potter and the Deathly Hallows: Part 2       :Action|Adventure|Fantasy|Science Fiction
+
+7  The Avengers                                       :Adventure|Action|Fantasy
+
+8  Titanic                                            :Adventure|Fantasy|Action|Western
+
+9  Frozen                                             :Animation|Family
+
+10 Iron Man 3                                         :Action|Adventure|Science Fiction
 
 ## Películas de cierto género principal que necesitaron mayor presupuesto
 
-```{r peliMayorPresupuesto, echo=FALSE}
+    Película                      :                     Género
+    
+1   Avengers: Age of Ultron                             :Adventure|Fantasy|Action
 
-```
+2   Tangled                                             :Animation|Family
+
+3   The Warrior's Way                                    Adventure|Fantasy|Action|Western|Thriller
+
+4   Pirates of the Caribbean: On Stranger Tides         :Action|Adventure|Fantasy|Science Fiction
+
+5   John Carter                                         :Adventure|Action||Thriller
+
+6   The Lone Ranger                                     :Action|Adventure|Western
+
+7   Superman Returns                                    :Action|Adventure|Science Fiction
+
+8   Pirates of the Caribbean: At World's End            :Action|Adventure|Fantasy|Science Fiction
+
+9   Spider-Man 3                                        :Action|Adventure|Science Fiction
+
 
 ## 20 mejores directores que hicieron películas saltamente calificadas
 
 ```{r bestDirectors, echo=FALSE}
+sum_movies <- read.csv("tmdb-movies.csv")
 
+directores <- sum_movies[c(6,9,18)]
+
+directoresTop <- directores[order(-directores$vote_average),] 
+
+directoresTop[1:25, ]
+
+View(directoresTop[1:25, ])
 ```
 
 ## Correlacion entre presupuestos e ingresos
@@ -370,74 +414,6 @@ res2$release_date
 
 Según los datos mostrados anteriormente sobre las fechas en que han salido las 10 películas con mayores ingresos, 4 de estas películas fueron lanzadas en marzo, mientras que 2 fueron lanzadas en noviembre, 2 en diciembre, 1 en junio y 1 en julio. Por lo que podría decirse que las películas lanzadas en marzo tienen relación a un éxito mayor basado en ganancias.
 
-## 4.8) Las películas de qué genero principal obtuvieron mayores ganancias
-
-```{r bestGenresRevenue, echo=FALSE}
-
-```
-    Película                      :                     Género   
-   
-1  Jurassic World                                     :Adventure|Fantasy|Action
-
-2  Star Wars: The Force Awakens                       :Fantasy|Action|Adventure
-
-3  Furious 7                                          :Action|Adventure
-
-4  Avengers: Age of Ultron                            :Adventure|Fantasy|Action
-
-5  Avatar                                             :Adventure|Fantasy|Action|Science Fiction
-
-6  Harry Potter and the Deathly Hallows: Part 2       :Action|Adventure|Fantasy|Science Fiction
-
-7  The Avengers                                       :Adventure|Action|Fantasy
-
-8  Titanic                                            :Adventure|Fantasy|Action|Western
-
-9  Frozen                                             :Animation|Family
-
-10 Iron Man 3                                         :Action|Adventure|Science Fiction
-
-
-## 4.9) Las películas de qué genero principal obtuvieron mayor presupuesto
-
-```{r bestGenreBudget, echo=FALSE}
-
-```
-    Película                      :                     Género
-    
-1   Avengers: Age of Ultron                             :Adventure|Fantasy|Action
-
-2   Tangled                                             :Animation|Family
-
-3   The Warrior's Way                                    Adventure|Fantasy|Action|Western|Thriller
-
-4   Pirates of the Caribbean: On Stranger Tides         :Action|Adventure|Fantasy|Science Fiction
-
-5   John Carter                                         :Adventure|Action||Thriller
-
-6   The Lone Ranger                                     :Action|Adventure|Western
-
-7   Superman Returns                                    :Action|Adventure|Science Fiction
-
-8   Pirates of the Caribbean: At World's End            :Action|Adventure|Fantasy|Science Fiction
-
-9   Spider-Man 3                                        :Action|Adventure|Science Fiction
-
-
-## 4.10) Quiénes son los 20 mejores directores que hicieron películas altamente calificadas
-
-```{r best20Directors, echo=FALSE}
-sum_movies <- read.csv("tmdb-movies.csv")
-
-directores <- sum_movies[c(6,9,18)]
-
-directoresTop <- directores[order(-directores$vote_average),] 
-
-directoresTop[1:25, ]
-
-View(directoresTop[1:25, ])
-
-```
 ##meses donde hay más lanzamientos
 ```{r}
 library(lubridate)
