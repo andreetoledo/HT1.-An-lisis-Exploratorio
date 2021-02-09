@@ -414,16 +414,23 @@ res2$release_date
 
 Según los datos mostrados anteriormente sobre las fechas en que han salido las 10 películas con mayores ingresos, 4 de estas películas fueron lanzadas en marzo, mientras que 2 fueron lanzadas en noviembre, 2 en diciembre, 1 en junio y 1 en julio. Por lo que podría decirse que las películas lanzadas en marzo tienen relación a un éxito mayor basado en ganancias.
 
-##meses donde hay más lanzamientos
-```{r}
+## Meses donde hay más lanzamientos
+```{r meses, echo=FALSE}
 library(lubridate)
 library(ggplot2)
-monthsss <- month(as.POSIXlt(sum_movies$release_date, format = "%m/%d/%y"))
-barplot(monthsss, main="Meses", xlab="meses")
+Meses <- month(as.POSIXlt(sum_movies$release_date, format = "%m/%d/%y"))
+
+ggplot(sum_movies, aes(Meses)) +
+    theme(axis.text.x=element_text(angle=90))+
+    labs(title='Meses de lanzamiento')+
+    geom_bar()+
+    scale_x_binned()  
 
 ```
-##Género de las películas con mayor duración
-```{r}
+
+## Género de las películas con mayor duración
+
+```{r duracion, echo=FALSE}
 library(dplyr)
 library(magrittr)
 
@@ -436,5 +443,6 @@ table(respF15p1)
 table(respF15p2)
 
 ```
-##Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
+
+Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
 
