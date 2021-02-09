@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 #"C:\Users\andre\OneDrive\Documentos\HT1.Analisis-Exploratorio"
 
-knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HT1.Analisis-Exploratorio")
+knitr::opts_knit$set(root.dir="C:/Users/Andree/Documents/GitHub/HT1.Analisis-Exploratorio")
 
 ```
 
@@ -460,5 +460,27 @@ table(respF15p1)
 table(respF15p2)
 
 ```
-##Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
+Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
+
+
+## 4.14)Correlacíon de las calificaciones con el éxito comercial
+
+
+```{r exitoComercial, echo=FALSE}
+
+sum_movies <- read.csv("tmdb-movies.csv")
+
+votos <- sum_movies$vote_average
+ganancias <- sum_movies$revenue
+
+ggplot(data = sum_movies, aes(x = votos), aes(x = ganancias)) + 
+  geom_bar() + 
+  xlab("Número de votos") + 
+  ylab("Ganancias") + 
+  ggtitle("éxito comercial")
+
+
+```
+
+
 
