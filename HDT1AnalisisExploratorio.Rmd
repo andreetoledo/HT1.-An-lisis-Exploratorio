@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 #"C:\Users\andre\OneDrive\Documentos\HT1.Analisis-Exploratorio"
 
-knitr::opts_knit$set(root.dir="C:/Users/Andree/Documents/GitHub/HT1.Analisis-Exploratorio")
+knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HT1.Analisis-Exploratorio")
 
 ```
 
@@ -446,22 +446,6 @@ monthsss <- month(as.POSIXlt(sum_movies$release_date, format = "%m/%d/%y"))
 barplot(monthsss, main="Meses", xlab="meses")
 
 ```
-##Género de las películas con mayor duración
-```{r}
-library(dplyr)
-library(magrittr)
-
-resp15 <-top_n(sum_movies,5,sum_movies$runtime)
-respF15p1 <- (resp15$runtime)
-respF15p2 <- (resp15$genres)
-##Runtime
-table(respF15p1)
-#genres
-table(respF15p2)
-
-```
-Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
-
 
 ## 4.14)Correlacíon de las calificaciones con el éxito comercial
 
@@ -482,5 +466,18 @@ ggplot(data = sum_movies, aes(x = votos), aes(x = ganancias)) +
 
 ```
 
+## 4.15) Género de las películas con mayor duración
+```{r}
+library(dplyr)
+library(magrittr)
 
+resp15 <-top_n(sum_movies,5,sum_movies$runtime)
+respF15p1 <- (resp15$runtime)
+respF15p2 <- (resp15$genres)
+##Runtime
+table(respF15p1)
+#genres
+table(respF15p2)
 
+```
+Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
