@@ -244,7 +244,7 @@ sum_movies <- read.csv(
 
 
 production_companies <- data.frame(table(do.call(c, lapply(sum_movies$production_companies, function(x) unlist(strsplit(x, "\\|"))))))
-#table(production_companies)
+table(production_companies)
 ```
 
 ## Películas que contaron con más presupuesto
