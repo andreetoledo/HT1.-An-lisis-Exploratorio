@@ -1,7 +1,7 @@
 ---
 title: "Análisis Exploratorio, HDT 1"
 author: "Ayleen Rubio 19003, Andrés Say 19705. Andreé Toledo 18439"
-date: "4/2/2021"
+date: "08/02/2021"
 output: html_document
 ---
 
@@ -428,9 +428,25 @@ ggplot(sum_movies, aes(Meses)) +
 
 ```
 
-## Género de las películas con mayor duración
+Como puede observarse, entre los meses con mayores lanzamientos se encuentran septiembre, octubre y diciembre. La barra más alta con la que se cuenta es la primera, sin embargo, esta es la unión tanto de enero como febrero, por eso se ha omitido para responder esta pregunta.
 
-```{r duracion, echo=FALSE}
+## Correlacion entre calificaciones y éxito comercial
+
+```{r exitoComercial, echo=FALSE}
+
+sum_movies <- read.csv("tmdb-movies.csv")
+
+votos <- sum_movies$vote_average
+ganancias <- sum_movies$revenue
+
+plot(sum_movies$vote_average, sum_movies$revenue, xlab = "Votos", ylab = "Ganancias", main = "Correlación entre votos e ingresos")
+abline(lm(sum_movies$revenue ~ sum_movies$budget), col="red", lwd = 3)
+```
+
+Como se puede observar en el gráfico, los datos no siguen ningún tipo de tendencia por lo que no existe correlación entre las calificaciones y el éxito comercial.
+
+## Género de las películas con mayor duración
+```{r duracion, echo = FALSE}
 library(dplyr)
 library(magrittr)
 
@@ -444,5 +460,7 @@ table(respF15p2)
 
 ```
 
+
 Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
+
 
