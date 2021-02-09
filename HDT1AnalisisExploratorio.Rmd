@@ -446,4 +446,19 @@ monthsss <- month(as.POSIXlt(sum_movies$release_date, format = "%m/%d/%y"))
 barplot(monthsss, main="Meses", xlab="meses")
 
 ```
+##Género de las películas con mayor duración
+```{r}
+library(dplyr)
+library(magrittr)
+
+resp15 <-top_n(sum_movies,5,sum_movies$runtime)
+respF15p1 <- (resp15$runtime)
+respF15p2 <- (resp15$genres)
+##Runtime
+table(respF15p1)
+#genres
+table(respF15p2)
+
+```
+##Observando las tablas de géneros podemos determinar que los que más se repiten (en un total de 2 veces) son drama y de tipo documental 
 
