@@ -7,8 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#"C:\Users\andre\OneDrive\Documentos\HT1.Analisis-Exploratorio"
 
-knitr::opts_knit$set(root.dir="C:/Users/Andree/Documents/GitHub/HT1.Analisis-Exploratorio")
+knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HT1.Analisis-Exploratorio")
 
 ```
 
@@ -435,6 +436,14 @@ directoresTop <- directores[order(-directores$vote_average),]
 directoresTop[1:25, ]
 
 View(directoresTop[1:25, ])
+
+```
+##meses donde hay más lanzamientos
+```{r}
+library(lubridate)
+library(ggplot2)
+monthsss <- month(as.POSIXlt(sum_movies$release_date, format = "%m/%d/%y"))
+barplot(monthsss, main="Meses", xlab="meses")
 
 ```
 
