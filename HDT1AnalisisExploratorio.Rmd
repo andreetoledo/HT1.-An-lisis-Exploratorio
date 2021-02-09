@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HT1.Analisis-Exploratorio")
+knitr::opts_knit$set(root.dir="C:/Users/Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT1")
 
 ```
 
@@ -309,26 +309,27 @@ do.call('pmax', c(as.data.frame(t(datos$Freq)), na.rm=TRUE))
 Lo cual, siguiendo los datos obtenidos anteriormente, corresponde al año 2014.
 
 ## Género principal de las 20 películas más populares
-```{r}
+```{r GeneroPopulares, echo=FALSE}
 library (dplyr)
 res <- top_n(sum_movies,20,sum_movies$popularity)
 resp6 <- (res$genres)
 table(resp6)
-##el género que más predomina en el top 20 es acción 
 ```
+
+El género que más predomina en el top 20 es: Acción
+
 ## Género que predomina en el conjunto de datos
 
 ```{r generoPrincipal, echo=FALSE}
-genres <- data.frame(table(do.call(c, lapply(sum_movies$genres, function(x) unlist(strsplit(x, "\\|"))))))
-
-library(ggplot2)
-
-#ggplot(sum_movies,aes(genres))+
- # geom_bar()+
-  #scale_x_binned()
-#pie(genres, main = "Grafia de pie de los géneros")
+slices <-c(2385,1471,699,3793,1355,520,4761,1231,916,188,334,1637,408,810,1712,1230,2908,167,270,165)
+lbls <- c("Action","Adventure", "Animation", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Foreign", "History", "Horror", "Music", "Mystery", "Romance", "Science Fiction", "Thriller", "TV Movie", "War", "Western")
+pct <- round(slices/sum(slices)*100)
+lbls <- paste(lbls,pct)
+lbls <- paste(lbls, "%", sep="")
+pie(slices, labels = lbls, col = rainbow(length(lbls)), main = "Grafico sobre distribución de los géneros")
 ```
 
+Según el gráfico observado, el género que predomina en el conjunto de datos es: Drama, representando un 18% del total.
 
 ## Películas de cierto género principal con mayores ganancias
 
@@ -353,8 +354,17 @@ library(ggplot2)
 ```{r correlation, echo=FALSE}
 plot(sum_movies$budget, sum_movies$revenue, xlab = "Presupuesto", ylab = "Ganancias", main = "Correlación entre presupuestos e ingresos:")
 abline(lm(sum_movies$revenue ~ sum_movies$budget), col="red", lwd = 3)
-#text(paste("Correlación entre presupuestos e ingresos:", round(cor(sum_movies$budget,sum_movies$revenue),2)))
 ```
 
+Según el gráfico observado, no existe correlación entre las variables ya que los valores no tienen una misma tendencia al rededor de la línea graficada.
 
+## Asociación entre meses e ingresos
 
+```{r mesesIngresos, echo=FALSE}
+library(dplyr)
+library(magrittr)
+res2 <- top_n(sum_movies,10,sum_movies$revenue)
+res2$release_date
+```
+
+Según los datos mostrados anteriormente sobre las fechas en que han salido las 10 películas con mayores ingresos, 4 de estas películas fueron lanzadas en marzo, mientras que 2 fueron lanzadas en noviembre, 2 en diciembre, 1 en junio y 1 en julio. Por lo que podría decirse que las películas lanzadas en marzo tienen relación a un éxito mayor basado en ganancias.
